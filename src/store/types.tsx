@@ -1,6 +1,7 @@
 
 export type Store = {
-    continue: boolean,
+    gameOver: boolean,
+    currentCircles: Coords[],
     currentScore: Score,
     topScore: Score[] | null
 }
@@ -8,8 +9,10 @@ export type Store = {
 export interface Score {
     id: string,
     name: string,
-    points: number | null
+    points: number
 }
+
+export type NewTopScore = Pick<Score, 'name' | 'points'>
 
 export type Coords = {
     top: number,

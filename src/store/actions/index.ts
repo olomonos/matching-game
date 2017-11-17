@@ -1,12 +1,14 @@
-// import {SetTodos, setTodos} from './set-todos';
-// import {SetTodo, setTodo} from './set-todo';
 import {SetTopScore, setTopScore} from './set-top-score';
+import {GameOver, gameOver} from './game-over';
+import {SetCurrentScore, setCurrentScore} from './set-current-score';
 
 export type Action
-    = SetTopScore;
+    = SetTopScore
+    | GameOver
+    | SetCurrentScore;
 
 export {
-    // SetTodos, setTodos,
-    // SetTodo, setTodo,
-    SetTopScore, setTopScore
+    SetTopScore, setTopScore,
+    GameOver, gameOver,
+    SetCurrentScore, setCurrentScore
 };

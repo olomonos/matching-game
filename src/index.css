@@ -12,3 +12,37 @@ body {
   background-color: #d4e157;
   position: absolute;  
 }
+
+.field {
+  margin: 30px auto;
+  width: 600px;
+}
+
+.half-field {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  height: 600px;
+  border: 1px solid darkgray;
+}
+
+.faded-colors {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  opacity: 0.8;
+}
+
+.game-over {
+  position: fixed;
+  width: 50%;  
+  top: 200px;
+  left: 25%;
+}
+
+.new-top-score-form {
+  height: 400px;
+}

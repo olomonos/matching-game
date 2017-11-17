@@ -8,15 +8,19 @@ import {
   HashRouter as Router,
   Route, Switch
 } from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {store} from './store';
 import {Game} from './layouts/game';
 
 ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route path="/game" exact component={Game} />
-      <Route path="*" render={() => "Not Found!"} />
-    </Switch>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path='/game' exact component={Game} />
+        <Route path='*' render={() => 'Not Found!'} />
+      </Switch>
+    </Router>
+  </Provider>
 ,
   document.getElementById('root') as HTMLElement
 );
