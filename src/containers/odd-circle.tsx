@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 import {Circle, Props} from '../components/circle';
-import {gameOver} from '../store/actions/game-over';
+import {nextRound} from '../store/actions/next-round';
 import {Store} from '../store';
 import {Coords} from '../store/types';
+import {setOfRandomCoords} from '../utils/set-of-random-coords';
 
 type OwnProps = {
     coords: Coords
@@ -18,7 +19,8 @@ export default connect<StateProps, DispatchProps, OwnProps>(
     }),
     dispatch => ({
         onClick() {
-            dispatch(gameOver());       // not gameOver();   !!!
+            let newCircles = setOfRandomCoords(4);            
+            dispatch(nextRound(newCircles));
         }
     })
 )(

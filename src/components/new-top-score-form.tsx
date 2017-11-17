@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Store} from '../store/types';
 
 export type Props = {
-    currentName: Store['currentScore']['name'],
+    currentName: Store['currentName'],
     onNameInput: React.ChangeEventHandler<HTMLInputElement>
 }
 
@@ -17,14 +17,14 @@ export const NewTopScoreForm: React.StatelessComponent<Props> = ({
                 Please enter your name to save it in the TopScore table.</h6>
             <div>
                 <input 
-                    placeholder='Placeholder' 
+                    placeholder='Name' 
                     id='newTopScoreName' 
                     type='text' 
                     className='validate'
                     value={currentName}
                     onChange={onNameInput}
                 />
-                <label>Name</label>
+                <label></label>
             </div>
         </div>
     );

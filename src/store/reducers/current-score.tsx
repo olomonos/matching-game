@@ -1,19 +1,14 @@
 import {Reducer} from './reducer';
 import {Store} from '../types';
 
-const initialCurrentScore: Store['currentScore'] = {
-    id: '',
-    name: '',
-    points: 0
-}
-
 export const currentScore: Reducer<Store['currentScore']> = (
-    state = initialCurrentScore, 
+    state = 0, 
     action
 ) => {
     switch (action.type) {
-        case 'SetCurrentScore': {
-            return {...state, ...action.changes};
+        case 'NextRound': {
+            let newScore = state;
+            return newScore + 1;
         }
         default: {
             return state;
