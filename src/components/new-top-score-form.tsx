@@ -3,12 +3,14 @@ import {Store} from '../store/types';
 
 export type Props = {
     currentName: Store['currentName'],
-    onNameInput: React.ChangeEventHandler<HTMLInputElement>
+    onNameInput: React.ChangeEventHandler<HTMLInputElement>,
+    onNameSave: () => void
 }
 
 export const NewTopScoreForm: React.StatelessComponent<Props> = ({
     currentName,
-    onNameInput
+    onNameInput,
+    onNameSave
 }) => {
     return (
         <div className='new-top-score-form'>
@@ -25,6 +27,10 @@ export const NewTopScoreForm: React.StatelessComponent<Props> = ({
                     onChange={onNameInput}
                 />
                 <label></label>
+                <a 
+                    className="waves-effect waves-light btn"
+                    onClick={onNameSave}
+                >save</a>
             </div>
         </div>
     );
