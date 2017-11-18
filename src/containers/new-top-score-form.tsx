@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {NewTopScoreForm, Props} from '../components/new-top-score-form';
 import {setCurrentName} from '../store/actions/set-current-name';
-// import {saveNewTopScore} from '../store/commands/save-new-top-score';
+import {saveNewTopScore} from '../store/commands/save-new-top-score';
 import {Store} from '../store';
 
 export type StateProps = Pick<Props, 'currentName'>;
@@ -15,7 +15,7 @@ export default connect<StateProps, DispatchProps>(
             dispatch(setCurrentName(e.target.value));
         },
         onNameSave() {
-            // dispatch(saveNewTopScore())
+            dispatch(saveNewTopScore())
         }
     })
 )(

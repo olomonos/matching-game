@@ -5,6 +5,8 @@ import {getTopScore} from './get-top-score';
 
 export type SaveNewTopScore = Command;
 
+const quantityOfTopScores = 5;
+
 const deleteScoreFromServer = function(id: Score['id']): Promise<Response> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -41,7 +43,7 @@ export function saveNewTopScore(): SaveNewTopScore {
     return (dispatch, getState) => {
         const {topScore, currentName, currentScore} = getState();
 
-        if (topScore.length == 5) {
+        if (topScore.length == quantityOfTopScores) {
             const minPoints = minBy(topScore, 'points');
             if (minPoints !==undefined) {
                     deleteScoreFromServer(minPoints.id);                    
@@ -53,6 +55,6 @@ export function saveNewTopScore(): SaveNewTopScore {
             points: currentScore
         });
 
-        getTopScore();
+        getTopScore();      // promiseAll(); ?
     };
 };
