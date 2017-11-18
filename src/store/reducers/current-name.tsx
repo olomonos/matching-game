@@ -6,9 +6,9 @@ export const currentName: Reducer<Store['currentName']> = (
     action
 ) => {
     switch (action.type) {
-        // case 'SetCurrentScore': {
-        //     return {...state, ...action.changes};
-        // }
+        case 'NewGame': {
+            return '';
+        }
         case 'SetCurrentName': {
             return action.name;
         }

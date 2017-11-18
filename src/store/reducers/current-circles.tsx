@@ -8,6 +8,9 @@ export const currentCircles: Reducer<Store['currentCircles']> = (
     state = initialCircles, action
 ) => {
     switch (action.type) {
+        case 'NewGame': {
+            return initialCircles;
+        }
         case 'NextRound': {
             let newCurrentCircles = [...state, ...action.newCircles];
             return newCurrentCircles;

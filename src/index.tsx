@@ -12,13 +12,16 @@ import {Provider} from 'react-redux';
 import {store} from './store';
 import {Game} from './layouts/game';
 import {TopScore} from './layouts/top-score';
+import {Menu} from './layouts/menu';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Switch>
+        <Route path='/' exact component={Menu} />
         <Route path='/game' exact component={Game} />
         <Route path='/top-score' exact component={TopScore} />
+        <Route path='/menu' exact component={Menu} />
         <Route path='*' render={() => 'Not Found!'} />
       </Switch>
     </Router>

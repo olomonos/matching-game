@@ -6,6 +6,9 @@ export const currentScore: Reducer<Store['currentScore']> = (
     action
 ) => {
     switch (action.type) {
+        case 'NewGame': {
+            return 0;
+        }
         case 'NextRound': {
             let newScore = state;
             return newScore + 1;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import NewTopScoreForm from '../containers/new-top-score-form';
+import {Link} from 'react-router-dom';
 
 export type Props = {
     isNewTopScore: boolean
@@ -16,10 +17,16 @@ export const GameOver: React.StatelessComponent<Props> = ({isNewTopScore}) => {
                 <h1>Ololo</h1>
                 </div>
             }
-            <a className="waves-effect waves-light btn">
+            {/* <a className="waves-effect waves-light btn">
                 <i className="material-icons left">menu</i>
                 to the menu
-            </a>            
+            </a> */}
+            <Link to="/menu"
+                className='waves-effect waves-light btn'
+            >
+                <i className="material-icons left">menu</i>
+                to the menu
+            </Link>       
         </div>
     );
 };
