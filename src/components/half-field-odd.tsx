@@ -12,8 +12,8 @@ export type Props = {
 export const HalfFieldOdd: React.StatelessComponent<Props> = ({currentCircles, gameOver}) => {
         
     let circles = [];
-    circles = currentCircles.map((coords) => {
-        return <Circle coords={coords} />
+    circles = currentCircles.map((coords, i) => {
+        return <Circle coords={coords} key={i} />
     });
 
     let oddCircleCoords: Coords = randomCoords(300, 600, 50, 50, 2);    // args - ???

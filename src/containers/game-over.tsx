@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {GameOver, Props} from '../components/game-over';
 import {Store} from '../store';
 import {createSelector} from 'reselect';
+import {quantityOfTopScores} from '../constants';
 
 export type StateProps = Pick<Props, 'isNewTopScore'>;
 
@@ -12,7 +13,7 @@ const isNewTopScoreSelector = createSelector(
     currentScoreSelector,
     (topScore, currentScore) => {
         let isNewTopScore = false;
-        if ((topScore !== null) && (topScore.length > 0)) {
+        if (topScore.length >= quantityOfTopScores) {
             for (let i = 0; i < topScore.length; i++) {
                 if (currentScore > topScore[i].points) {
                     isNewTopScore = true;

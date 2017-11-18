@@ -9,8 +9,8 @@ export type Props = {
 export const HalfField: React.StatelessComponent<Props> = ({currentCircles}) => {
         
     let circles = [];
-    circles = currentCircles.map((coords) => {
-        return <Circle coords={coords} />
+    circles = currentCircles.map((coords, i) => {
+        return <Circle coords={coords} key={i} />
     });
 
     return (

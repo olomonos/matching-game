@@ -2,10 +2,9 @@ import {Command} from './command';
 import {Score, NewTopScore} from '../../store';
 import {minBy} from 'lodash';
 import {getTopScore} from './get-top-score';
+import {quantityOfTopScores} from '../../constants';
 
 export type SaveNewTopScore = Command;
-
-const quantityOfTopScores = 5;
 
 const deleteScoreFromServer = function(id: Score['id']): Promise<Response> {
     const headers = new Headers();
