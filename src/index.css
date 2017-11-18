@@ -38,11 +38,33 @@ body {
 
 .game-over {
   position: fixed;
-  width: 50%;  
-  top: 200px;
+  width: 50%;
+  top: 0;
   left: 25%;
 }
 
+.game-over-panel {
+  position: relative;
+  top: 200px;
+}
+
 .new-top-score-form {
-  height: 400px;
+  position: relative;
+  top: 150px;
+}
+
+.menu-items-block {
+  position: relative;
+  top: 200px;
+  width: 50%;
+  margin: auto;
+}
+
+.menu-item {
+  width: 100%;
+}
+
+.game-menu {
+  width: 50%;
+  margin: auto;
 }

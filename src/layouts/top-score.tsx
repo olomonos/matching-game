@@ -4,7 +4,7 @@ import TopScoreMenu from '../containers/top-score-menu';
 
 export const TopScore: React.StatelessComponent = () => (
     <div>
+        <TopScoreMenu className='game-menu' />
         <TopScoreTable />
-        <TopScoreMenu />
     </div>
 );

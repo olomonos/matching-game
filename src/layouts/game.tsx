@@ -4,7 +4,7 @@ import GameMenu from '../containers/game-menu';
 
 export const Game: React.StatelessComponent = () => (
     <div>
-        <GameMenu />
+        <GameMenu className='game-menu'/>
         <Field />
     </div>
 );

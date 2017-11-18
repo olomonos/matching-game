@@ -9,22 +9,28 @@ export type Props = {
 
 export const Menu: React.StatelessComponent<Props> = ({gameOver, onNewGame}) => {
     return (
-        <div className='menu'>
-            {gameOver ? null :
-            <Link to="/game"
-                className="waves-effect waves-light btn"
-                >back to the game
-            </Link>
-            }
-            <Link to="/game"
-                className='waves-effect waves-light btn'
-                onClick={onNewGame}
-                >new game
-            </Link>
-            <Link to="/top-score"
-                className="waves-effect waves-light btn"
-                >top score
-            </Link>
-        </div>
+        <ul className='menu-items-block'>
+            <li>
+                {gameOver ? null :
+                    <Link to="/game"
+                        className="waves-effect waves-light btn menu-item"
+                        >back to the game
+                    </Link>
+                }
+            </li>
+            <li>
+                <Link to="/game"
+                    className='waves-effect waves-light btn menu-item'
+                    onClick={onNewGame}
+                    >new game
+                </Link>
+            </li>
+            <li>
+                <Link to="/top-score"
+                    className="waves-effect waves-light btn menu-item"
+                    >top score
+                </Link>
+            </li>
+        </ul>
     );
 };

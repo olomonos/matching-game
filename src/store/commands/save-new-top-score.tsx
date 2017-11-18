@@ -1,12 +1,13 @@
 import {Command} from './command';
-import {Score, NewTopScore} from '../../store';
 import {minBy} from 'lodash';
-import {getTopScore} from './get-top-score';
+import {Score, NewTopScore} from '../../store';
+// import {getTopScore} from './get-top-score';
+import {refreshTopScore} from '../actions';
 import {quantityOfTopScores} from '../../constants';
 
 export type SaveNewTopScore = Command;
 
-const deleteScoreFromServer = function(id: Score['id']): Promise<Response> {
+const deleteScoreFromServer = function(id: Score['id']): Promise<Score['id']> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -19,10 +20,11 @@ const deleteScoreFromServer = function(id: Score['id']): Promise<Response> {
                 body: ''
             }
         )
+        .then(() => id)
     );
 };
 
-const saveScoreToServer = function(score: NewTopScore): Promise<Response> {
+const saveScoreToServer = function(score: NewTopScore): Promise<Score> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     
@@ -35,25 +37,30 @@ const saveScoreToServer = function(score: NewTopScore): Promise<Response> {
                 body: JSON.stringify(score)
             }
         )
+        .then(res => res.json())
     );
 };
 
 export function saveNewTopScore(): SaveNewTopScore { 
     return (dispatch, getState) => {
         const {topScore, currentName, currentScore} = getState();
+        let deleteScore: Promise<Score['id']> | undefined;
 
         if (topScore.length == quantityOfTopScores) {
             const minPoints = minBy(topScore, 'points');
-            if (minPoints !==undefined) {
-                    deleteScoreFromServer(minPoints.id);                    
+            if (minPoints !== undefined) {
+                deleteScore = deleteScoreFromServer(minPoints.id);
             }  
         }
 
-        saveScoreToServer({
-            name: currentName,
-            points: currentScore
-        });
-
-        getTopScore();      // promiseAll(); ?
+        Promise
+            .all<Score, Score['id'] | undefined>([
+                saveScoreToServer({
+                    name: currentName,
+                    points: currentScore
+                }),
+                deleteScore
+            ])
+            .then(([score, id]) => dispatch(refreshTopScore(score, id)));
     };
 };

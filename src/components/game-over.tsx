@@ -10,23 +10,16 @@ export const GameOver: React.StatelessComponent<Props> = ({isNewTopScore}) => {
     
     return (
         <div className='game-over'>
-            <h3>Game Over</h3>
+            <Link to="/menu"
+                className='waves-effect waves-light btn menu-item'
+            >menu
+            </Link>       
             {isNewTopScore ?
-                <NewTopScoreForm /> : 
-                <div className='new-top-score-form' >
-                <h1>Ololo</h1>
+                <NewTopScoreForm className='new-top-score-form' /> :
+                <div className="card-panel teal game-over-panel">
+                    <h3 className="white-text center-align">Game Over</h3>
                 </div>
             }
-            {/* <a className="waves-effect waves-light btn">
-                <i className="material-icons left">menu</i>
-                to the menu
-            </a> */}
-            <Link to="/menu"
-                className='waves-effect waves-light btn'
-            >
-                <i className="material-icons left">menu</i>
-                to the menu
-            </Link>       
         </div>
     );
 };
