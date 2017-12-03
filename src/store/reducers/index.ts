@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {Store} from '../types';
 import {Reducer} from './reducer';
+import { routerReducer } from 'react-router-redux';
 import {gameOver} from './game-over';
 import {currentCircles} from './current-circles';
 import {currentScore} from './current-score';
@@ -12,5 +13,6 @@ export default combineReducers({
     currentCircles,
     currentScore,
     currentName,
-    topScore
+    topScore,
+    router: routerReducer
 }) as Reducer<Store>;
