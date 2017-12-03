@@ -4,19 +4,17 @@ import registerServiceWorker from './registerServiceWorker';
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.css';
 import './index.css';
-import {
-  HashRouter as Router,
-  Route, Switch
-} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {store} from './store';
+import { ConnectedRouter } from 'react-router-redux';
+import {store, history} from './store';
 import {Game} from './layouts/game';
 import {TopScore} from './layouts/top-score';
 import {Menu} from './layouts/menu';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <Switch>
         <Route path='/' exact component={Menu} />
         <Route path='/game' exact component={Game} />
@@ -24,7 +22,7 @@ ReactDOM.render(
         <Route path='/menu' exact component={Menu} />
         <Route path='*' render={() => 'Not Found!'} />
       </Switch>
-    </Router>
+    </ConnectedRouter>
   </Provider>
 ,
   document.getElementById('root') as HTMLElement

@@ -1,5 +1,6 @@
 import {Command} from './command';
 import {minBy} from 'lodash';
+import {push} from 'react-router-redux';
 import {Score, NewTopScore} from '../../store';
 // import {getTopScore} from './get-top-score';
 import {refreshTopScore} from '../actions';
@@ -61,6 +62,11 @@ export function saveNewTopScore(): SaveNewTopScore {
                 }),
                 deleteScore
             ])
-            .then(([score, id]) => dispatch(refreshTopScore(score, id)));
+            .then(([score, id]) => {
+                dispatch(refreshTopScore(score, id));
+                dispatch(push('/menu'));
+            });
     };
 };
+
+// Make separate function "update-top-score";
