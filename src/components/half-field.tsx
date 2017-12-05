@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Circle from '../containers/circle';
+import InactiveCircle from '../containers/inactive-circle';
 import {Store} from '../store/types';
 
 export type Props = {
@@ -10,7 +10,7 @@ export const HalfField: React.StatelessComponent<Props> = ({currentCircles}) => 
         
     let circles = [];
     circles = currentCircles.map((coords, i) => {
-        return <Circle coords={coords} key={i} />
+        return <InactiveCircle coords={coords} key={i} />
     });
 
     return (
