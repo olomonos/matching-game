@@ -13,9 +13,17 @@ body {
   position: absolute;  
 }
 
-.field {
-  margin: 30px auto;
+.rules-box {
   width: 600px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+}
+
+.field {
+  width: 600px;
+  margin: 30px auto;  
 }
 
 .half-field {
