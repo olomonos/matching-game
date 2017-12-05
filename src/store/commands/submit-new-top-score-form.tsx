@@ -2,11 +2,10 @@ import {Command} from './command';
 import {minBy} from 'lodash';
 import {push} from 'react-router-redux';
 import {Score, NewTopScore} from '../../store';
-// import {getTopScore} from './get-top-score';
 import {refreshTopScore} from '../actions';
 import {quantityOfTopScores} from '../../constants';
 
-export type SaveNewTopScore = Command;
+export type SubmitNewTopScoreForm = Command;
 
 const deleteScoreFromServer = function(id: Score['id']): Promise<Score['id']> {
     const headers = new Headers();
@@ -42,7 +41,7 @@ const saveScoreToServer = function(score: NewTopScore): Promise<Score> {
     );
 };
 
-export function saveNewTopScore(): SaveNewTopScore { 
+export function submitNewTopScoreForm(): SubmitNewTopScoreForm { 
     return (dispatch, getState) => {
         const {topScore, currentName, currentScore} = getState();
         let deleteScore: Promise<Score['id']> | undefined;
@@ -64,7 +63,7 @@ export function saveNewTopScore(): SaveNewTopScore {
             ])
             .then(([score, id]) => {
                 dispatch(refreshTopScore(score, id));
-                dispatch(push('/menu'));
+                dispatch(push('/top-score'));
             });
     };
 };
