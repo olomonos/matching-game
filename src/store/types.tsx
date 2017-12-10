@@ -4,7 +4,8 @@ export type Store = {
     currentCircles: Coords[],
     currentScore: number,
     currentName: string,
-    topScore: Score[]
+    topScore: Score[],
+    timeLeft: number
 }
 
 export interface Score {
