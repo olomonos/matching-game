@@ -5,15 +5,17 @@ import {Link} from 'react-router-dom';
 export type Props = {
     gameOver: Store['gameOver'],
     onNewGame: () => void,
+    onResumeGame: () => void
 }
 
-export const Menu: React.StatelessComponent<Props> = ({gameOver, onNewGame}) => {
+export const Menu: React.StatelessComponent<Props> = ({gameOver, onNewGame, onResumeGame}) => {
     return (
         <ul className='menu-items-block'>
             <li>
                 {gameOver ? null :
                     <Link to="/game"
                         className="waves-effect waves-light btn menu-item"
+                        onClick={onResumeGame}
                         >back to the game
                     </Link>
                 }

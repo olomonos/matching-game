@@ -5,6 +5,8 @@ import {SetCurrentName, setCurrentName} from './set-current-name';
 import {RefreshTopScore, refreshTopScore} from './refresh-top-score';
 import {NewGame, newGame} from './new-game';
 import {SetTimeLeft, setTimeLeft} from './set-time-left';
+import {PauseGame, pauseGame} from './pause-game';
+import {ResumeGame, resumeGame} from './resume-game';
 
 export type Action
     = SetTopScore
@@ -13,7 +15,10 @@ export type Action
     | NextRound
     | SetCurrentName
     | NewGame
-    | SetTimeLeft ;
+    | SetTimeLeft
+    | PauseGame
+    | ResumeGame
+    ;
 
 export {
     SetTopScore, setTopScore,
@@ -22,5 +27,7 @@ export {
     NextRound, nextRound,
     SetCurrentName, setCurrentName,
     NewGame, newGame,
-    SetTimeLeft, setTimeLeft
+    SetTimeLeft, setTimeLeft,
+    PauseGame, pauseGame,
+    ResumeGame, resumeGame
 };

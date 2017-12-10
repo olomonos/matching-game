@@ -1,6 +1,7 @@
 
 export type Store = {
     gameOver: boolean,
+    isPaused: boolean,
     currentCircles: Coords[],
     currentScore: number,
     currentName: string,
