@@ -3,6 +3,7 @@ export type Store = {
     gameOver: boolean,
     isPaused: boolean,
     currentCircles: Coords[],
+    oddCircle: Coords,
     currentScore: number,
     currentName: string,
     topScore: Score[],

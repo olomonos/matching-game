@@ -9,10 +9,10 @@ export const currentCircles: Reducer<Store['currentCircles']> = (
 ) => {
     switch (action.type) {
         case 'NewGame': {
-            return initialCircles;
+            return setOfRandomCoords(4);
         }
         case 'NextRound': {
-            let newCurrentCircles = [...state, ...action.newCircles];
+            let newCurrentCircles = [...state, ...setOfRandomCoords(4)];
             return newCurrentCircles;
         }
         default: {
