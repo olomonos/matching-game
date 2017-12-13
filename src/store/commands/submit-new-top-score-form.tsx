@@ -1,13 +1,14 @@
 import {Command} from './command';
-import {minBy, sortBy} from 'lodash';
+import {minBy} from 'lodash';
 import {push} from 'react-router-redux';
+import * as uuid from 'uuid/v4';
 import {Score, NewTopScore} from '../../store';
-import {refreshTopScore, setTopScore} from '../actions';
+import {refreshTopScore} from '../actions';
 import {quantityOfTopScores} from '../../constants';
 
 export type SubmitNewTopScoreForm = Command;
 
-const deleteScoreFromServer = function(id: Score['id']): Promise<Score['id']> {
+function deleteScoreFromServer(id: Score['id']): Promise<Score['id']> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -22,9 +23,9 @@ const deleteScoreFromServer = function(id: Score['id']): Promise<Score['id']> {
         )
         .then(() => id)
     );
-};
+}
 
-const saveScoreToServer = function(score: NewTopScore): Promise<Score> {
+function saveScoreToServer(score: NewTopScore): Promise<Score> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     
@@ -39,56 +40,62 @@ const saveScoreToServer = function(score: NewTopScore): Promise<Score> {
         )
         .then(res => res.json())
     );
-};
+}
+
+function updateServerScores(
+    topScores: Score[],
+    score: NewTopScore
+): Promise<[Score, Score['id'] | undefined]> {
+    let deleteScore: Promise<Score['id']> | undefined;
+    
+    if (topScores.length == quantityOfTopScores) {
+        const minPoints = minBy(topScores, 'points');
+        if (minPoints !== undefined) {
+            deleteScore = deleteScoreFromServer(minPoints.id);
+        }  
+    }
+
+    return Promise
+        .all<Score, Score['id'] | undefined>([
+            saveScoreToServer(score),
+            deleteScore
+        ])
+}
+
+function updateLocalScores(
+    topScores: Score[],
+    score: NewTopScore
+): Promise<[Score, Score['id'] | undefined]> {
+    const newScore = {...score, id: uuid()};
+    let deletedId: Score['id'] | undefined;
+
+    if (topScores.length == quantityOfTopScores) {
+
+        const minPoints = minBy(topScores, 'points');
+        if (minPoints !== undefined) {
+            deletedId = minPoints.id;
+            topScores.splice(topScores.indexOf(minPoints), 1);
+        }
+    }
+
+    localStorage.setItem('topScore', JSON.stringify(topScores));
+
+    return Promise.resolve(
+        [newScore, deletedId] as [Score, Score['id'] | undefined]
+    );
+}
 
 export function submitNewTopScoreForm(): SubmitNewTopScoreForm { 
     return (dispatch, getState) => {
         const {currentName, currentScore, isLocal, topScore} = getState();
-        
-        if (isLocal) {
-            let newTopScore = [...topScore];
-            if (topScore.length == quantityOfTopScores) {
-                let sortedTopScore = sortBy(topScore, 'points');
-                if (sortedTopScore[0].points < currentScore) {
-                    sortedTopScore[0].name = currentName;
-                    sortedTopScore[0].points = currentScore;
-                    newTopScore = sortedTopScore;
-                }
-            } else {
-                newTopScore.push({
-                    name: currentName,
-                    points: currentScore,
-                    id: ''
-                });
-            }
-            dispatch(setTopScore(newTopScore));
-            localStorage.setItem('topScore', JSON.stringify(topScore));
+        const newScore = {name: currentName, points: currentScore};
+
+        (isLocal ?
+            updateLocalScores(topScore, newScore) :
+            updateServerScores(topScore, newScore)
+        ).then(([score, id]) => {
+            dispatch(refreshTopScore(score, id));
             dispatch(push('/top-score'));
-
-        } else {
-            let deleteScore: Promise<Score['id']> | undefined;
-
-            if (topScore.length == quantityOfTopScores) {
-                const minPoints = minBy(topScore, 'points');
-                if (minPoints !== undefined) {
-                    deleteScore = deleteScoreFromServer(minPoints.id);
-                }  
-            }
-
-            Promise
-                .all<Score, Score['id'] | undefined>([
-                    saveScoreToServer({
-                        name: currentName,
-                        points: currentScore
-                    }),
-                    deleteScore
-                ])
-                .then(([score, id]) => {
-                    dispatch(refreshTopScore(score, id));
-                    dispatch(push('/top-score'));
-                });
-        }
+        });
     };
 };
-
-// Make separate function "update-top-score";

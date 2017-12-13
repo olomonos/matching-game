@@ -10,8 +10,7 @@ export const topScore: Reducer<Store['topScore']> = (state = [], action) => {
         case 'RefreshTopScore': {
             const {addedScore, deletedScoreId} = action;
             const refreshed = reject(state, {id: deletedScoreId});
-            refreshed.push(addedScore);
-            return refreshed;
+            return [...refreshed, addedScore];
         }
         default: {
             return state;

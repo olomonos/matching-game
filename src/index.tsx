@@ -6,7 +6,7 @@ import 'materialize-css/dist/css/materialize.css';
 import './index.css';
 import { Route, Switch } from 'react-router-dom';
 import {Provider} from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import {ConnectedRouter} from 'react-router-redux';
 import {store, history} from './store';
 import {Game} from './layouts/game';
 import {TopScore} from './layouts/top-score';
