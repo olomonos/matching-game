@@ -1,5 +1,6 @@
 
 export type Store = {
+    isLocal: boolean,
     gameOver: boolean,
     isPaused: boolean,
     currentCircles: Coords[],

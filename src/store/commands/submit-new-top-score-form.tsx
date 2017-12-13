@@ -1,8 +1,8 @@
 import {Command} from './command';
-import {minBy} from 'lodash';
+import {minBy, sortBy} from 'lodash';
 import {push} from 'react-router-redux';
 import {Score, NewTopScore} from '../../store';
-import {refreshTopScore} from '../actions';
+import {refreshTopScore, setTopScore} from '../actions';
 import {quantityOfTopScores} from '../../constants';
 
 export type SubmitNewTopScoreForm = Command;
@@ -43,28 +43,51 @@ const saveScoreToServer = function(score: NewTopScore): Promise<Score> {
 
 export function submitNewTopScoreForm(): SubmitNewTopScoreForm { 
     return (dispatch, getState) => {
-        const {topScore, currentName, currentScore} = getState();
-        let deleteScore: Promise<Score['id']> | undefined;
-
-        if (topScore.length == quantityOfTopScores) {
-            const minPoints = minBy(topScore, 'points');
-            if (minPoints !== undefined) {
-                deleteScore = deleteScoreFromServer(minPoints.id);
-            }  
-        }
-
-        Promise
-            .all<Score, Score['id'] | undefined>([
-                saveScoreToServer({
+        const {currentName, currentScore, isLocal, topScore} = getState();
+        
+        if (isLocal) {
+            let newTopScore = [...topScore];
+            if (topScore.length == quantityOfTopScores) {
+                let sortedTopScore = sortBy(topScore, 'points');
+                if (sortedTopScore[0].points < currentScore) {
+                    sortedTopScore[0].name = currentName;
+                    sortedTopScore[0].points = currentScore;
+                    newTopScore = sortedTopScore;
+                }
+            } else {
+                newTopScore.push({
                     name: currentName,
-                    points: currentScore
-                }),
-                deleteScore
-            ])
-            .then(([score, id]) => {
-                dispatch(refreshTopScore(score, id));
-                dispatch(push('/top-score'));
-            });
+                    points: currentScore,
+                    id: ''
+                });
+            }
+            dispatch(setTopScore(newTopScore));
+            localStorage.setItem('topScore', JSON.stringify(topScore));
+            dispatch(push('/top-score'));
+
+        } else {
+            let deleteScore: Promise<Score['id']> | undefined;
+
+            if (topScore.length == quantityOfTopScores) {
+                const minPoints = minBy(topScore, 'points');
+                if (minPoints !== undefined) {
+                    deleteScore = deleteScoreFromServer(minPoints.id);
+                }  
+            }
+
+            Promise
+                .all<Score, Score['id'] | undefined>([
+                    saveScoreToServer({
+                        name: currentName,
+                        points: currentScore
+                    }),
+                    deleteScore
+                ])
+                .then(([score, id]) => {
+                    dispatch(refreshTopScore(score, id));
+                    dispatch(push('/top-score'));
+                });
+        }
     };
 };
 

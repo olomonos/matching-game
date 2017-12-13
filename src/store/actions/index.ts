@@ -7,6 +7,7 @@ import {NewGame, newGame} from './new-game';
 import {SetTimeLeft, setTimeLeft} from './set-time-left';
 import {PauseGame, pauseGame} from './pause-game';
 import {ResumeGame, resumeGame} from './resume-game';
+import {SetIsLocal, setIsLocal} from './set-is-local';
 
 export type Action
     = SetTopScore
@@ -18,6 +19,7 @@ export type Action
     | SetTimeLeft
     | PauseGame
     | ResumeGame
+    | SetIsLocal
     ;
 
 export {
@@ -29,5 +31,6 @@ export {
     NewGame, newGame,
     SetTimeLeft, setTimeLeft,
     PauseGame, pauseGame,
-    ResumeGame, resumeGame
+    ResumeGame, resumeGame,
+    SetIsLocal, setIsLocal
 };
