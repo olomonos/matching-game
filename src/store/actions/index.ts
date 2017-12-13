@@ -8,6 +8,7 @@ import {SetTimeLeft, setTimeLeft} from './set-time-left';
 import {PauseGame, pauseGame} from './pause-game';
 import {ResumeGame, resumeGame} from './resume-game';
 import {SetIsLocal, setIsLocal} from './set-is-local';
+import {SetIsPending, setIsPending} from './set-is-pending';
 
 export type Action
     = SetTopScore
@@ -20,6 +21,7 @@ export type Action
     | PauseGame
     | ResumeGame
     | SetIsLocal
+    | SetIsPending
     ;
 
 export {
@@ -32,5 +34,6 @@ export {
     SetTimeLeft, setTimeLeft,
     PauseGame, pauseGame,
     ResumeGame, resumeGame,
-    SetIsLocal, setIsLocal
+    SetIsLocal, setIsLocal,
+    SetIsPending, setIsPending
 };

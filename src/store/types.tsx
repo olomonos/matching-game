@@ -8,6 +8,7 @@ export type Store = {
     currentScore: number,
     currentName: string,
     topScore: Score[],
+    isPending: boolean,
     timeLeft: number
 }
 

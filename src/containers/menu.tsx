@@ -4,14 +4,15 @@ import {Store} from '../store';
 import {newGame, resumeGame, setIsLocal} from '../store/actions';
 import {getTopScore} from '../store/commands/get-top-score';
 
-export type StateProps = Pick<Props, 'gameOver' | 'isLocal'>;
+export type StateProps = Pick<Props, 'gameOver' | 'isLocal' | 'isPending'>;
 
 export type DispatchProps = Pick<Props, 'onNewGame' | 'onResumeGame' | 'onStorageToggle'>;
 
 export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
         gameOver: state.gameOver,
-        isLocal: state.isLocal
+        isLocal: state.isLocal,
+        isPending: state.isPending
     }),
     dispatch => ({
         onNewGame() {

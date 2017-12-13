@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 export type Props = {
     gameOver: Store['gameOver'],
     isLocal: Store['isLocal'],
+    isPending: Store['isPending'],
     onNewGame: () => void,
     onResumeGame: () => void,
     onStorageToggle: React.ChangeEventHandler<HTMLInputElement>
@@ -13,6 +14,7 @@ export type Props = {
 export const Menu: React.StatelessComponent<Props> = ({
     gameOver, 
     isLocal,
+    isPending,
     onNewGame, 
     onResumeGame,
     onStorageToggle
@@ -22,7 +24,12 @@ export const Menu: React.StatelessComponent<Props> = ({
             <div className="switch">
                 <label>
                     Local Score
-                    <input type="checkbox" checked={!isLocal} onChange={onStorageToggle} />
+                    <input 
+                        type="checkbox" 
+                        checked={!isLocal}
+                        disabled={isPending}
+                        onChange={onStorageToggle} 
+                    />
                     <span className="lever"></span>
                     Global Score
                 </label>

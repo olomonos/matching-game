@@ -1,6 +1,6 @@
 import {Command} from './command';
 import {Score} from '../types';
-import {setTopScore} from '../actions';
+import {setTopScore, setIsPending} from '../actions';
 
 export type GetTopScore = Command;
 
@@ -25,8 +25,11 @@ export function getTopScore(): GetTopScore {
                 dispatch(setTopScore([]));
             }
         } else {
+            dispatch(setIsPending(true));
             getScoreFromServer()
-                .then(topScore => dispatch(setTopScore(topScore)));
+                .then(topScore => dispatch(setTopScore(topScore)))
+                .catch(() => alert('There is no server available.'))
+                .then(() => dispatch(setIsPending(false)));
         }
     }
 };

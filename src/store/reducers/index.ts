@@ -10,6 +10,7 @@ import {oddCircle} from './odd-circle';
 import {currentScore} from './current-score';
 import {currentName} from './current-name';
 import {topScore} from './top-score';
+import {isPending} from './is-pending';
 import {timeLeft} from './time-left';
 
 export default combineReducers({
@@ -21,6 +22,7 @@ export default combineReducers({
     currentScore,
     currentName,
     topScore,
+    isPending,
     timeLeft,
     router: routerReducer
 }) as Reducer<Store>;
