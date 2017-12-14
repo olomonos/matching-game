@@ -10,16 +10,18 @@ export const CurrentScore: React.StatelessComponent<Props> = ({
     currentScore, 
     timeLeft
 }) => (
-    <div className='current-score card-panel teal'>
-        <span className='white-text'>
-            <p>
+    <div className='current-score'>
+        <div className='card-panel teal current-points'>
+            <span className='white-text'>
                 {'Score: '}
                 {currentScore}
-            </p>
-            <p>
+            </span>
+        </div>
+        <div className='card-panel teal current-time'>
+            <span className='white-text'>
                 {'Time: '}
                 {timeLeft}
-            </p>
-        </span>
+            </span>
+        </div>
     </div>  
 );
