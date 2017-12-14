@@ -7,7 +7,7 @@ body {
 .main-container {
   padding: 3px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 600px repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr) 100px 400px 100px repeat(3, 1fr);
   grid-template-rows: repeat(2, minmax(50px, auto)) 600px;
 }
 
@@ -21,7 +21,7 @@ body {
 }
 
 .rules-box {
-  grid-column: 4 / 5;
+  grid-column: 5 / 6;
   grid-row: 2 / 3;
   display: grid;
   justify-items: center;
@@ -29,12 +29,12 @@ body {
 
 .current-score {
   grid-column: 1 / 4;
-  grid-row: 2 / 3;
-  max-width: 125px;
+  grid-row: 1 / 2;
+  width: 125px;
 }
 
 .field {
-  grid-column: 4 / 5;
+  grid-column: 4 / 7;
   grid-row: 3 / 4;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -84,7 +84,7 @@ body {
 }
 
 .menu-items-block {
-  grid-column: 4 / 5;
+  grid-column: 5 / 6;
   grid-row: 2 / 4;
 }
 
@@ -98,11 +98,11 @@ body {
 }
 
 .game-menu {
-  grid-column: 4 / 5;
+  grid-column: 5 / 6;
   grid-row: 1 / 2;
 }
 
 .top-score-table {
-  grid-column: 4 / 5;
+  grid-column: 5 / 6;
   grid-row: 2 / 3;
 }
