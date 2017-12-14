@@ -35,13 +35,9 @@ export const TopScoreTable: React.StatelessComponent<Props> = ({topScore}) => {
     }
 
     return (
-        <div className='top-score-table'>
-
-            <ul className="collection with-header">
-                <li className="collection-header"><h4>Top Score</h4></li>
-                {lines}   
-            </ul>
-           
-        </div>
+        <ul className="collection with-header top-score-table">
+            <li className="collection-header"><h4>Top Score</h4></li>
+            {lines}   
+        </ul>
     );
 };

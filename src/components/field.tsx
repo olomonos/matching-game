@@ -11,11 +11,9 @@ export type Props = {
 export const Field: React.StatelessComponent<Props> = ({gameOver}) => {
         
     return (
-        <div>
-            <div className='field'>
+        <div className='field'>
                 <HalfField />
                 <HalfFieldOdd />
-            </div>
 
             {gameOver ? 
                 <div>

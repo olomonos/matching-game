@@ -6,10 +6,11 @@ export type Props = {
     timeLeft: Store['timeLeft']
 }
 
-export const CurrentScore: React.StatelessComponent<Props> = ({currentScore, timeLeft}) => (
-    <div 
-        className='current-score card-panel teal'
-    >
+export const CurrentScore: React.StatelessComponent<Props> = ({
+    currentScore, 
+    timeLeft
+}) => (
+    <div className='current-score card-panel teal'>
         <span className='white-text'>
             <p>
                 <strong>Score: </strong>

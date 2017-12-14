@@ -5,7 +5,7 @@ import GameMenu from '../containers/game-menu';
 import CurrentScore from '../containers/current-score';
 
 export const Game: React.StatelessComponent = () => (
-    <div>
+    <div className='main-container'>
         <GameMenu className='game-menu'/>
         <Rules />
         <CurrentScore />

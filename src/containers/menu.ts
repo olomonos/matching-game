@@ -1,18 +1,15 @@
 import {connect} from 'react-redux';
 import {Menu, Props} from '../components/menu';
 import {Store} from '../store/types';
-import {newGame, resumeGame, setIsLocal} from '../store/actions';
-import {getTopScore} from '../store/commands/get-top-score';
+import {newGame, resumeGame} from '../store/actions';
 
-export type StateProps = Pick<Props, 'gameOver' | 'isLocal' | 'isPending'>;
+export type StateProps = Pick<Props, 'gameOver'>;
 
-export type DispatchProps = Pick<Props, 'onNewGame' | 'onResumeGame' | 'onStorageToggle'>;
+export type DispatchProps = Pick<Props, 'onNewGame' | 'onResumeGame'>;
 
 export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
         gameOver: state.gameOver,
-        isLocal: state.isLocal,
-        isPending: state.isPending
     }),
     dispatch => ({
         onNewGame() {
@@ -20,10 +17,6 @@ export default connect<StateProps, DispatchProps>(
         },
         onResumeGame() {
             dispatch(resumeGame());
-        },
-        onStorageToggle(e) {
-            dispatch(setIsLocal(e.currentTarget.checked));
-            dispatch(getTopScore());
         }
     })
 )(
