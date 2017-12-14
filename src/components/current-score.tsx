@@ -13,11 +13,11 @@ export const CurrentScore: React.StatelessComponent<Props> = ({
     <div className='current-score card-panel teal'>
         <span className='white-text'>
             <p>
-                <strong>Score: </strong>
+                {'Score: '}
                 {currentScore}
             </p>
             <p>
-                <strong>Time: </strong>
+                {'Time: '}
                 {timeLeft}
             </p>
         </span>

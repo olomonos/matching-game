@@ -9,8 +9,8 @@ export type Props = {
 export const Circle: React.StatelessComponent<Props> = ({coords, onClick}) => {
 
     const style = {
-        top: coords.top,
-        left: coords.left
+        top: coords.top.toString() + '%',
+        left: coords.left.toString() + '%'
     };
 
     return (

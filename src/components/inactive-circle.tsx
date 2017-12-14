@@ -8,8 +8,8 @@ export type Props = {
 export const InactiveCircle: React.StatelessComponent<Props> = ({coords}) => {
 
     const style = {
-        top: coords.top,
-        left: coords.left
+        top: coords.top.toString() + '%',
+        left: coords.left.toString() + '%'
     };
 
     return (
