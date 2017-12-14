@@ -71,6 +71,8 @@ body {
   width: 50%;
   top: 0;
   left: 25%;
+  display: grid;
+  justify-content: center;
 }
 
 .game-over-panel {
@@ -81,6 +83,7 @@ body {
 .new-top-score-form {
   position: relative;
   top: 150px;
+  width: 400px;
 }
 
 .menu-items-block {
@@ -94,7 +97,7 @@ body {
 }
 
 .menu-item {
-  width: 100%;
+  width: 400px;
 }
 
 .game-menu {
