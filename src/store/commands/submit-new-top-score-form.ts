@@ -78,7 +78,7 @@ function updateLocalScores(
         }
     }
 
-    localStorage.setItem('topScore', JSON.stringify(topScores));
+    localStorage.setItem('topScore', JSON.stringify([...topScores, newScore]));
 
     return Promise.resolve(
         [newScore, deletedId] as [Score, Score['id'] | undefined]
