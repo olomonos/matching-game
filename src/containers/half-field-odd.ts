@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {HalfFieldOdd, Props} from '../components/half-field-odd';
-import {Store} from '../store';
+import {Store} from '../store/types';
 
 export type StateProps = Pick<Props, 'currentCircles' | 'gameOver'>;
 

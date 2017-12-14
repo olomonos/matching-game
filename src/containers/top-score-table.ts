@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {TopScoreTable, Props} from '../components/top-score-table';
-import {Store} from '../store';
+import {Store} from '../store/types';
 import {createSelector} from 'reselect';
 import {orderBy} from 'lodash';
 

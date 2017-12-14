@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {NewTopScoreForm, Props} from '../components/new-top-score-form';
 import {setCurrentName} from '../store/actions/set-current-name';
 import {submitNewTopScoreForm} from '../store/commands/submit-new-top-score-form';
-import {Store} from '../store';
+import {Store} from '../store/types';
 
 export type StateProps = Pick<Props, 'currentName' | 'currentScore'>;
 

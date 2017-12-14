@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Circle, Props} from '../components/circle';
 import {gameOver} from '../store/actions/game-over';
-import {Store, Coords} from '../store';
+import {Store, Coords} from '../store/types';
 
 type OwnProps = {
     coords: Coords

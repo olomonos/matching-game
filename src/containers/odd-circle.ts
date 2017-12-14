@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Circle, Props} from '../components/circle';
 import {nextRound} from '../store/actions/next-round';
-import {Store} from '../store';
+import {Store} from '../store/types';
 
 export type StateProps = Pick<Props, 'coords'>;
 

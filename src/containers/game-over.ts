@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {GameOver, Props} from '../components/game-over';
-import {Store} from '../store';
+import {Store} from '../store/types';
 import {createSelector} from 'reselect';
 import {quantityOfTopScores} from '../constants';
 

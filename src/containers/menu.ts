@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {Menu, Props} from '../components/menu';
-import {Store} from '../store';
+import {Store} from '../store/types';
 import {newGame, resumeGame, setIsLocal} from '../store/actions';
 import {getTopScore} from '../store/commands/get-top-score';
 
