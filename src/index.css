@@ -30,6 +30,7 @@ body {
 .current-score {
   grid-column: 1 / 4;
   grid-row: 2 / 3;
+  max-width: 125px;
 }
 
 .field {
