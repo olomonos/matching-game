@@ -9,4 +9,4 @@ This is a simple matching game.
 
 ## Website
 
-You can try the game at [Matching Game](https://bitbucket.org/olomonos/matching-game).
+You can try the game at [Matching Game](https://olomonos.github.io/matching-game).
